@@ -48,7 +48,7 @@
 }
 
 % Some default config
-\subtitle{{\tiny new}KACTL}
+\subtitle{{new}KACTL}
 \title{KTH Algorithm Competition Template Library}
 \newcommand{\PDFColor}{0}
 \def\@builddir{build}
@@ -122,9 +122,9 @@
 
 	\parindent \z@ \raggedright \normalfont
 		\interlinepenalty\@M
-	{\underline{\huge \bfseries #1} }
+	{\underline{\large \bfseries #1} }
 	\ifnum \c@secnumdepth >\m@ne
-		{\huge\bfseries (\thechapter) \par\nobreak }
+		{\large\bfseries (\thechapter) \par\nobreak }
 	\fi
 	\startcontents[chapters]
 }
@@ -132,7 +132,7 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-0.5ex \@plus -1ex \@minus -.2ex}%
                                    {.4ex}%
-                                   {\normalfont\LARGE\bfseries}}
+                                   {\normalfont\normalsize\bfseries}}
 
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}
 	{1ex\@plus -1ex \@minus -.3ex}
@@ -145,10 +145,10 @@
 	{\normalfont\large\bfseries}}
 
 % Styles for local toc
-\titlecontents{localsection}[1.5em]{\small}{}
-	{\small}{\titlerule*[0.8em]{.}\contentspage}
-\titlecontents{localsubsection}[3.8em]{\small}{}
-	{\small}{\titlerule*[0.8em]{.}\contentspage}
+\titlecontents{localsection}[1.5em]{\normalsize}{}
+	{\normalsize}{\titlerule*[0.8em]{.}\contentspage}
+\titlecontents{localsubsection}[3.8em]{\normalsize}{}
+	{\normalsize}{\titlerule*[0.8em]{.}\contentspage}
 
 % Styles for main toc
 \renewcommand{\chaptermark}[1]{\markboth{\emph{ #1}}{}}
@@ -344,7 +344,7 @@
 
 
 \newcommand{\codeheader}[2]{
-	{\par\noindent\footnotesize{\textbf{#1:} #2\par}}
+	{\par\noindent{\textbf{#1:} #2\par}}
 }
 
 \long\def\@makecaption#1#2{
@@ -354,7 +354,6 @@
 	\ifthenelse{\boolean{hasmemory}}{\codeheader{Memory}{\@defmemory}}{}
 	\ifthenelse{\boolean{hastime}}{\codeheader{Time}{\@deftime}}{}
 	\ifthenelse{\boolean{hasleftcaption}}{\vspace{0pt}}{\vspace{-5pt}}
-	\tiny
 	\texttt{\@leftcaption} \hfill \@rightcaption
 }
 
