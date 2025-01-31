@@ -24,9 +24,20 @@
 
 \section{Optimization tricks}
 	\verb@__builtin_ia32_ldmxcsr(40896);@ disables denormals (which make floats 20x slower near their minimum value).
-	\subsection{Bit hacks}
-		\begin{itemize}
-			\item \verb@x & -x@ is the least bit in \texttt{x}.
+  \subsection{Bit Hacks}
+\begin{itemize}
+      \item \verb@x & -x@ extracts the lowest set bit of \texttt{x}.
+      \item \verb@x & (x - 1)@ clears the lowest set bit of \texttt{x}.
+      \item \verb@x | (x + 1)@ sets the lowest unset bit of \texttt{x}.
+      \item \verb@__builtin_popcount(x)@ counts the number of set bits in \texttt{x}.
+      \item \verb@__builtin_ctz(x)@ returns the number of trailing zeros in \texttt{x}.
+      \item \verb@__builtin_clz(x)@ returns the number of leading zeros in \texttt{x}.
+      \item \verb@__builtin_ffs(x)@ returns the 1-based index of the lowest set bit in \texttt{x}.
+      \item \verb@31 - __builtin_clz(x)@ computes $\lfloor \log_2 x \rfloor$.
+      \item \verb@for (int x = m; x; ) { --x &= m; ... }@ iterates over all subset masks of \texttt{m} (excluding \texttt{m} itself).
+      \item \verb@c = x & -x, r = x + c; (((r ^ x) >> 2) / c) | r@ generates the next number after \texttt{x} with the same number of set bits.
+      \item \verb@rep(b,0,K) rep(i,0,(1 << K))@ \\
+            \verb@  if (i & (1 << b)) D[i] += D[i ^ (1 << b)];@ computes the sum of all subsets.
 			\item \verb@for (int x = m; x; ) { --x &= m; ... }@ loops over all subset masks of \texttt{m} (except \texttt{m} itself).
 			\item \verb@c = x&-x, r = x+c; (((r^x) >> 2)/c) | r@ is the next number after \texttt{x} with the same number of bits set.
 			\item \verb@rep(b,0,K) rep(i,0,(1 << K))@ \\ \verb@  if (i & 1 << b) D[i] += D[i^(1 << b)];@ computes all sums of subsets.

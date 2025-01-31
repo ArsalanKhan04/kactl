@@ -270,7 +270,9 @@
 	{\large #2}
 	\immediate\write18{rm -f \@builddir/kactl.tmp} % Don't include old kactl.tmp on failure.
 	\immediate\write18{python3 content/tex/preprocessor.py -i "\@kactldir/#2" -o \@builddir/kactl.tmp #1}
+  {\rmfamily
 	\immediate\input{\@builddir/kactl.tmp}
+  }
 }
 
 \newcommand{\import}[1]{
